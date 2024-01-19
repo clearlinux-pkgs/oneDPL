@@ -1,0 +1,25 @@
+From 4292444a7bf355111f0a1eb847549e90e304a12d Mon Sep 17 00:00:00 2001
+From: "Brett T. Warden" <brett.t.warden@intel.com>
+Date: Fri, 19 Jan 2024 13:32:12 -0800
+Subject: [PATCH] Ensure test binaries are built
+
+---
+ test/CMakeLists.txt | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/test/CMakeLists.txt b/test/CMakeLists.txt
+index 384e777ff7d6..33c63aa09cad 100644
+--- a/test/CMakeLists.txt
++++ b/test/CMakeLists.txt
+@@ -67,7 +67,7 @@ macro(onedpl_add_test test_source_file switch_off_checked_iterators)
+     get_filename_component(_test_name ${test_source_file} NAME)
+     string(REPLACE "\.cpp" "" _test_name ${_test_name})
+ 
+-    add_executable(${_test_name} EXCLUDE_FROM_ALL "${test_source_file}")
++    add_executable(${_test_name} "${test_source_file}")
+     target_compile_definitions(${_test_name} PRIVATE _PSTL_TEST_SUCCESSFUL_KEYWORD=1)
+     if (MSVC)
+         target_compile_options(${_test_name} PRIVATE /bigobj)
+-- 
+2.43.0
+

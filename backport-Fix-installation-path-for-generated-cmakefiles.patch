@@ -1,0 +1,25 @@
+From d207c44e834186ecac9d89da0bbaf71bb499848d Mon Sep 17 00:00:00 2001
+From: "Brett T. Warden" <brett.t.warden@intel.com>
+Date: Fri, 19 Jan 2024 13:31:55 -0800
+Subject: [PATCH] Fix installation path for generated cmakefiles
+
+---
+ CMakeLists.txt | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/CMakeLists.txt b/CMakeLists.txt
+index ef1664ef0bf6..a9c07a678a4e 100644
+--- a/CMakeLists.txt
++++ b/CMakeLists.txt
+@@ -400,7 +400,7 @@ endif()
+ ###############################################################################
+ # Installation instructions
+ ###############################################################################
+-install(CODE "set(OUTPUT_DIR \"${CMAKE_INSTALL_FULL_LIBDIR}/cmake/oneDPL\")")
++install(CODE "set(OUTPUT_DIR \"\$ENV{DESTDIR}/${CMAKE_INSTALL_FULL_LIBDIR}/cmake/oneDPL\")")
+ install(CODE "set(SKIP_HEADERS_SUBDIR TRUE)")
+ install(SCRIPT cmake/scripts/generate_config.cmake)
+ install(DIRECTORY include/ DESTINATION ${CMAKE_INSTALL_INCLUDEDIR})
+-- 
+2.43.0
+
