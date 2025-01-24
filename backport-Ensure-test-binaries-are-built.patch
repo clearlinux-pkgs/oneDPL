@@ -11,15 +11,9 @@ diff --git a/test/CMakeLists.txt b/test/CMakeLists.txt
 index 384e777ff7d6..33c63aa09cad 100644
 --- a/test/CMakeLists.txt
 +++ b/test/CMakeLists.txt
-@@ -67,7 +67,7 @@ macro(onedpl_add_test test_source_file switch_off_checked_iterators)
-     get_filename_component(_test_name ${test_source_file} NAME)
-     string(REPLACE "\.cpp" "" _test_name ${_test_name})
- 
--    add_executable(${_test_name} EXCLUDE_FROM_ALL "${test_source_file}")
-+    add_executable(${_test_name} "${test_source_file}")
-     target_compile_definitions(${_test_name} PRIVATE _PSTL_TEST_SUCCESSFUL_KEYWORD=1)
-     if (MSVC)
-         target_compile_options(${_test_name} PRIVATE /bigobj)
+@@ -67,1 +67,1 @@ macro(onedpl_add_test test_source_file switch_off_checked_iterators)
+-        add_executable(${_test_name} EXCLUDE_FROM_ALL "${test_source_file}")
++        add_executable(${_test_name} "${test_source_file}")
 -- 
 2.43.0
 
